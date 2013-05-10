@@ -272,6 +272,9 @@ so let's not get too insert-happy."
                 (smart-operator-insert "*" 'before))
                (t
                 (smart-operator-insert "*"))))
+	((memq major-mode '(python-mode))
+	      (insert "*"))
+
         (t
          (smart-operator-insert "*"))))
 
