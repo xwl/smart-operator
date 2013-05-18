@@ -273,8 +273,15 @@ so let's not get too insert-happy."
                (t
                 (smart-operator-insert "*"))))
 	((memq major-mode '(python-mode))
-	      (insert "*"))
-
+	 ;; handling unpacking tuple and list.
+	 (cond 
+	 	((looking-back "[:,\\[=] *")
+		(insert "*"))
+		((looking-back "\*")
+		(insert "*"))
+		((looking-back "[a-zA-Z0-9]+\(")
+		(insert "*"))
+	       (t (smart-operator-insert "*"))))
         (t
          (smart-operator-insert "*"))))
 
